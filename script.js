@@ -15,7 +15,6 @@ function selectAgent(agentName) {
 function continueStory() {
 
 
-
     stress = 70;
     socialSupport = 50;
     selfEfficacy = 35;
@@ -44,10 +43,53 @@ function continueStory() {
 
 function callFriend() {
 
-    socialSupport = 70;
-    stress = 20;
+
     
     document.getElementById("choices").innerHTML =
-        "Stress: " + stress + "%<br>" +
-        "Social support: " + socialSupport + "%"; 
+        "Who should Samantha call?";
+
+   
+    let valeriaButton = document.createElement("button");
+    valeriaButton.textContent = "Valeria";
+    valeriaButton.onclick = () => {
+        
+    stress = 55;
+    socialSupport = 70;
+    selfEfficacy = 40;
+    fatigue = 40;
+    wellbeing = 35;
+        
+        
+        document.getElementById("choices").innerHTML = "Samantha called Valeria and she comforted Samantha.<br><br>" +
+    "Stress: " + stress + "%<br>" +
+    "Social support: " + socialSupport + "%<br>" +
+    "Self-efficacy: " + selfEfficacy + "%<br>" +
+    "Fatigue: " + fatigue + "%<br>" +
+    "Well-being: " + wellbeing + "%";
+    
+   
+    };
+    document.getElementById("choices").appendChild(valeriaButton);
+
+    
+    let josefinaButton = document.createElement("button");
+    josefinaButton.textContent = "Josefina";
+    josefinaButton.onclick = () => {
+        
+    stress = 75;
+    socialSupport = 45;
+    selfEfficacy = 30;
+    fatigue = 50;
+    wellbeing = 15;
+        
+        document.getElementById("choices").innerHTML = "Samantha called Josefina and she didn't help Samantha.<br><br>" +
+    "Stress: " + stress + "%<br>" +
+    "Social support: " + socialSupport + "%<br>" +
+    "Self-efficacy: " + selfEfficacy + "%<br>" +
+    "Fatigue: " + fatigue + "%<br>" +
+    "Well-being: " + wellbeing + "%";
+    
+   
+    };
+    document.getElementById("choices").appendChild(josefinaButton);
 }
