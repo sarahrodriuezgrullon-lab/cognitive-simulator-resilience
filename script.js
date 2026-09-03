@@ -23,7 +23,7 @@ function continueStory() {
     wellbeing = 20;
 
     document.getElementById("storyText").textContent =
-        "Her mom had just told her she wouldn't be allowed to go on the upcoming school trip";
+        "Her mom had just told her she wouldn't be allowed to go on the upcoming school trip.";
 
     document.getElementById("choices").innerHTML =
         "Stress: " + stress + "%<br>" +
@@ -121,6 +121,30 @@ function callFriend() {
             "Fatigue: " + fatigue + "%<br>" +
             "Well-being: " + wellbeing + "%";
 
+        let instagramButton = document.createElement("button");
+
+        instagramButton.textContent = "Post on Close Friends";
+
+        instagramButton.onclick = postOnInstagram;
+
+        document.getElementById("choices").appendChild(instagramButton);
+       
+        let scrollButton = document.createElement("button");
+
+        scrollButton.textContent = "Scroll through Tik Tok";
+
+        scrollButton.onclick = scrollTikTok;
+
+        document.getElementById("choices").appendChild(scrollButton);
+
+        let overthinkButton = document.createElement("button");
+
+        overthinkButton.textContent = "Overthink in her room";
+
+        overthinkButton.onclick = overthink;
+
+        document.getElementById("choices").appendChild(overthinkButton);
+
     };
 
     document.getElementById("choices").appendChild(josefinaButton);
@@ -176,6 +200,59 @@ function makePlan() {
 
     document.getElementById("choices").innerHTML =
         "Samantha accepted that she wouldn't go and made an alternative plan for the day of the trip.<br><br>" +
+        "Stress: " + stress + "%<br>" +
+        "Social support: " + socialSupport + "%<br>" +
+        "Self-efficacy: " + selfEfficacy + "%<br>" +
+        "Fatigue: " + fatigue + "%<br>" +
+        "Well-being: " + wellbeing + "%";
+
+}
+
+function postOnInstagram() {
+
+    stress = 80;
+    socialSupport = 50;
+    selfEfficacy = 20
+    fatigue = 55;
+    wellbeing = 10;
+
+    document.getElementById("choices").innerHTML =
+        "Samantha posted on Close Friends, but it did not help her feel better.<br><br>" +
+        "Stress: " + stress + "%<br>" +
+        "Social support: " + socialSupport + "%<br>" +
+        "Self-efficacy: " + selfEfficacy + "%<br>" +
+        "Fatigue: " + fatigue + "%<br>" +
+        "Well-being: " + wellbeing + "%";
+}
+
+function scrollTikTok() {
+
+    stress = 70
+    socialSupport = 45;
+    selfEfficacy = 25
+    fatigue = 55
+    wellbeing = 10
+
+    document.getElementById("choices").innerHTML =
+        "Samantha scrolled through Tik Tok, but it did not help her feel better.<br><br>" +
+        "Stress: " + stress + "%<br>" +
+        "Social support: " + socialSupport + "%<br>" +
+        "Self-efficacy: " + selfEfficacy + "%<br>" +
+        "Fatigue: " + fatigue + "%<br>" +
+        "Well-being: " + wellbeing + "%";
+}
+
+
+function overthink() {
+
+    stress = 85;
+    socialSupport = 35;
+    selfEfficacy = 20;
+    fatigue = 60;
+    wellbeing = 5;
+
+    document.getElementById("choices").innerHTML =
+        "Samantha overthought the situation and it made her feel worse.<br><br>" +
         "Stress: " + stress + "%<br>" +
         "Social support: " + socialSupport + "%<br>" +
         "Self-efficacy: " + selfEfficacy + "%<br>" +
