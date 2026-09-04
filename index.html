@@ -1,29 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<title>Cognitive Simulator of Resilience</title>
-</head>
-
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Cognitive Simulator of Resilience</title>
+    <link rel="stylesheet" href="style.css">
+</head> 
+ 
 <body>
 
-<h1>Cognitive Simulator of Resilience</h1>
-<p>Independent research about the resilience as systems of survival during hard experiences.</p>
-<h2>Choose your agent</h2>
+<div id="startScreen">
 
-<button onclick="selectAgent('Samantha')">Samantha</button>
-<button onclick="selectAgent('Fabián')">Fabián</button>
-<button onclick="selectAgent('Mariana')">Mariana</button>
+    <h1>Cognitive Simulator of Resilience</h1>
 
-<script src="script.js"></script>
+    <p>Independent research about resilience as systems of survival during hard experiences.</p>
 
-<p id="storyText">Samantha is excited about the upcoming school trip.</p>
+    <h2>Choose your agent</h2>
 
-<button onclick="continueStory()">Continue</button>
+    <button onclick="selectAgent('Samantha')">Samantha</button>
+    <button onclick="selectAgent('Fabián')">Fabián</button>
+    <button onclick="selectAgent('Mariana')">Mariana</button>
+
+</div>
+
+
+<div id="gameScreen">
+
+    <h2 id="agentName">Samantha</h2>
+
+<div id="storyText">
+    Samantha is excited about the upcoming school trip.
+</div>
 
 <div id="choices"></div>
 
+<div id="statusPanel"></div>
+
+<button id="continueButton" onclick="continueStory()">Continue</button>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>

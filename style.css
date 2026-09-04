@@ -1,0 +1,201 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+    background: #f4eeee;
+    color: #2b2020;
+}
+
+/* -------------------------
+   START SCREEN
+------------------------- */
+
+#startScreen {
+    text-align: center;
+    padding-top: 80px;
+}
+
+#startScreen h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+#startScreen p {
+    font-size: 18px;
+    margin-bottom: 45px;
+}
+
+#startScreen h2 {
+    margin-bottom: 20px;
+}
+
+
+/* -------------------------
+   BUTTONS
+------------------------- */
+
+button {
+    padding: 12px 22px;
+    margin: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: #803838;
+    color: white;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* -------------------------
+   GAME SCREEN
+------------------------- */
+
+#gameScreen {
+    display: none;
+    position: relative;
+    min-height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+
+/* -------------------------
+   CHARACTER NAME
+------------------------- */
+
+#agentName {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+/* -------------------------
+   SCENE
+------------------------- */
+
+#storyText {
+    background: #803838;
+    color: white;
+
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 115px;
+
+    height: 120px;
+    padding: 25px;
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+/* -------------------------
+   CHOICES
+------------------------- */
+
+#choices {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 10px;
+
+    min-height: 80px;
+
+    text-align: center;
+}
+
+#choices p {
+    margin: 0 0 8px 0;
+    font-size: 17px;
+}
+
+#choices p {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+
+/* -------------------------
+   STATUS PANEL
+------------------------- */
+
+#statusPanel {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 220px;
+}
+
+
+/* -------------------------
+   INDIVIDUAL STAT
+------------------------- */
+
+.stat {
+    margin-bottom: 15px;
+}
+
+.stat span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+/* -------------------------
+   STAT BARS
+------------------------- */
+
+.barContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bar {
+    width: 160px;
+    height: 12px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    background: #803838;
+    transition: width 0.4s ease;
+}
+
+.statNumber {
+    font-size: 14px;
+}
+
+
+/* -------------------------
+   CONTINUE BUTTON
+------------------------- */
+
+#continueButton {
+    display: block;
+    margin: 25px auto;
+}
