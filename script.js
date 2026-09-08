@@ -165,8 +165,8 @@ document.getElementById("choices").innerHTML =
 
 
         let planButton = document.createElement("button");
-        planButton.textContent = "Make an alternative plan";
-        planButton.onclick = makePlan;
+        planButton.textContent = "Bake something sweet";
+        planButton.onclick = bakeCookies;
 
         document.getElementById("choices").appendChild(planButton);
     };
@@ -210,11 +210,11 @@ document.getElementById("choices").innerHTML =
         document.getElementById("choices").appendChild(scrollButton);
 
 
-        let overthinkButton = document.createElement("button");
-        overthinkButton.textContent = "Overthink in her room";
-        overthinkButton.onclick = overthink;
+        let organizeButton = document.createElement("button");
+        organizeButton.textContent = "Organize her room";
+        organizeButton.onclick = organizeRoom;
 
-        document.getElementById("choices").appendChild(overthinkButton);
+        document.getElementById("choices").appendChild(organizeButton);
     };
 
     document.getElementById("choices").appendChild(josefinaButton);
@@ -235,8 +235,80 @@ function talkToMom() {
 
     updateStatus();
 
+   document.getElementById("storyText").textContent =
+        "Samantha talked to her mom and tried to understand her reasons.";
+
     document.getElementById("choices").innerHTML =
-        "<p>Samanta talked to her mom. She still do not agree with the decision, but she understands why her mom made it. She feels closer to her, and the knot in her chest loosens a little.</p>";
+        "<p>What should Samantha do next?</p>";
+
+   let homeWorkButton = document.createElement("button");
+    homeWorkButton.textContent = "Make homework";
+    homeWorkButton.onclick = makeHomework;
+
+    document.getElementById("choices").appendChild(homeWorkButton);
+
+    let movieButton = document.createElement("button");
+    movieButton.textContent = "Watch a movie with mom";
+    movieButton.onclick = watchMovieWithMom;
+
+    document.getElementById("choices").appendChild(movieButton);
+
+    let walkButton = document.createElement("button");
+    walkButton.textContent = "Go for a walk";
+    walkButton.onclick = goForWalk;
+
+    document.getElementById("choices").appendChild(walkButton);
+}
+
+function makeHomework() {
+
+    stress = 30;
+    socialSupport = 75;
+    selfEfficacy = 60;
+    fatigue = 40;
+    wellbeing = 65;
+
+    updateStatus();
+
+    document.getElementById("storyText").innerHTML =
+        "<p>Samantha focused on her homework and felt a sense of accomplishment.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+}
+
+function watchMovieWithMom() {
+
+    stress = 25;
+    socialSupport = 85;
+    selfEfficacy = 50;
+    fatigue = 25;
+    wellbeing = 65;
+
+    updateStatus();
+
+    document.getElementById("storyText").innerHTML =
+        "<p>Samantha watched a movie with her mom and felt comforted.</p>";
+
+    document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+}
+
+function goForWalk() {
+
+    stress = 20;
+    socialSupport = 80;
+    selfEfficacy = 55;
+    fatigue = 25;
+    wellbeing = 65;
+
+    updateStatus();
+
+    document.getElementById("storyText").innerHTML =
+        "<p>Samantha went for a walk and felt refreshed.</p>";
+
+    document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
 }
 
 
@@ -250,12 +322,33 @@ function writeDiary() {
 
     updateStatus();
 
-    document.getElementById("choices").innerHTML =
+    document.getElementById("storyText").innerHTML =
         "<p>Samantha wrote in her diary about how she was feeling.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+
+        let saveTheJournalButton = document.createElement("button");
+        saveTheJournalButton.textContent = "Write in her diary";
+        saveTheJournalButton.onclick = writeDiary;
+        
+        document.getElementById("choices").appendChild(saveTheJournalButton);
+
+        let writeLetterButton = document.createElement("button");
+        writeLetterButton.textContent = "Write a letter to her future self";
+        writeLetterButton.onclick = writeLetter;
+        
+        document.getElementById("choices").appendChild(writeLetterButton);
+
+        let makeDrawingButton = document.createElement("button");
+        makeDrawingButton.textContent = "Make a drawing";
+        makeDrawingButton.onclick = makeDrawing;
+
+        document.getElementById("choices").appendChild(makeDrawingButton);
 }
 
 
-function makePlan() {
+function bakeCookies() {
 
     stress = 45;
     socialSupport = 70;
@@ -265,8 +358,29 @@ function makePlan() {
 
     updateStatus();
 
-    document.getElementById("choices").innerHTML =
-        "<p>Samantha accepted that she wouldn't go and made an alternative plan for the day of the trip.</p>";
+    document.getElementById("storyText").innerHTML =
+        "<p>Samantha baked cookies and felt a sense of accomplishment.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+
+        let eatCookiesButton = document.createElement("button");
+        eatCookiesButton.textContent = "Eat the cookies";
+        eatCookiesButton.onclick = eatCookies;
+
+        document.getElementById("choices").appendChild(eatCookiesButton);
+
+        let shareCookiesButton = document.createElement("button");
+        shareCookiesButton.textContent = "Share the cookies with mom";
+        shareCookiesButton.onclick = shareCookies;
+
+        document.getElementById("choices").appendChild(shareCookiesButton);
+
+        let postCookiesButton = document.createElement("button");
+        postCookiesButton.textContent = "Post a picture of the cookies on Instagram";
+        postCookiesButton.onclick = postCookies;
+
+        document.getElementById("choices").appendChild(postCookiesButton);
 }
 
 
@@ -284,8 +398,29 @@ function postOnInstagram() {
 
     updateStatus();
 
-    document.getElementById("choices").innerHTML =
+    document.getElementById("storyText").innerHTML =
         "<p>Samantha posted on Close Friends, but it did not help her feel better.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+
+        let deletePostButton = document.createElement("button");
+        deletePostButton.textContent = "Delete the post";
+        deletePostButton.onclick = deletePost;
+
+        document.getElementById("choices").appendChild(deletePostButton);
+
+        let chekingStoryButton = document.createElement("button");
+        chekingStoryButton.textContent = "Obsessively checking story viewers";
+        chekingStoryButton.onclick = checkStory;
+
+        document.getElementById("choices").appendChild(chekingStoryButton);
+
+        let airPlaneMusicButton = document.createElement("button");
+        airPlaneMusicButton.textContent = "Samanta put her phone on airplane mode, turned up the volume, and let the music drown everything out.";
+        airPlaneMusicButton.onclick = airplaneMode;
+
+        document.getElementById("choices").appendChild(airPlaneMusicButton);
 }
 
 
@@ -299,21 +434,63 @@ function scrollTikTok() {
 
     updateStatus();
 
-    document.getElementById("choices").innerHTML =
+    document.getElementById("storyText").innerHTML =
         "<p>Samantha scrolled through TikTok, but it did not help her feel better.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+
+        let watchUntilSleepButton = document.createElement("button");
+        watchUntilSleepButton.textContent = "Watch TikTok until she falls asleep";
+        watchUntilSleepButton.onclick = watchUntilSleep;
+
+        document.getElementById("choices").appendChild(watchUntilSleepButton);
+
+        let searchAnxietyButton = document.createElement("button");
+        searchAnxietyButton.textContent = "Search for how to manage anxiety on TikTok";
+        searchAnxietyButton.onclick = searchAnxiety;
+
+        document.getElementById("choices").appendChild(searchAnxietyButton);
+
+        let closePhoneAndSleepButton = document.createElement("button");
+        closePhoneAndSleepButton.textContent = "Close her phone and try to sleep";
+        closePhoneAndSleepButton.onclick = closePhoneAndSleep;
+
+        document.getElementById("choices").appendChild(closePhoneAndSleepButton);
 }
 
 
-function overthink() {
+function organizeRoom() {
 
-    stress = 85;
-    socialSupport = 35;
-    selfEfficacy = 20;
+    stress = 60;
+    socialSupport = 45;
+    selfEfficacy = 45;
     fatigue = 60;
-    wellbeing = 5;
+    wellbeing = 30;
 
     updateStatus();
 
-    document.getElementById("choices").innerHTML =
-        "<p>Samantha overthought the situation and it made her feel worse.</p>";
+    document.getElementById("storyText").innerHTML =
+        "<p>Samantha organized her room, which helped her feel more in control.</p>";
+
+        document.getElementById("choices").innerHTML =
+        "<p>What should Samantha do next?</p>";
+
+        let deepCleaningButton = document.createElement("button");
+        deepCleaningButton.textContent = "Do a deep cleaning of her room";
+        deepCleaningButton.onclick = deepCleaning;
+
+        document.getElementById("choices").appendChild(deepCleaningButton);
+
+        let rearrangeFurnitureButton = document.createElement("button");
+        rearrangeFurnitureButton.textContent = "Rearrange the furniture in her room";
+        rearrangeFurnitureButton.onclick = rearrangeFurniture;
+
+        document.getElementById("choices").appendChild(rearrangeFurnitureButton);
+
+        let organizeBookshelfButton = document.createElement("button");
+        organizeBookshelfButton.textContent = "Organize her bookshelf";
+        organizeBookshelfButton.onclick = organizeBookshelf;
+
+        document.getElementById("choices").appendChild(organizeBookshelfButton);
 }
