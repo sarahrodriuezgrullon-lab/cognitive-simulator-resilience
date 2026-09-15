@@ -1,12 +1,10 @@
-
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 
-    font-family: Arial, sans-serif;
+    font-family: Georgia, 'Times New Roman', serif;
     background: #f4eeee;
     color: #2b2020;
 }
@@ -18,7 +16,7 @@ body {
 
 #startScreen {
     text-align: center;
-    padding-top: 80px;
+    padding: 60px 30px;
 }
 
 #startScreen h1 {
@@ -33,6 +31,44 @@ body {
 
 #startScreen h2 {
     margin-bottom: 20px;
+}
+
+
+/* -------------------------
+   ENDINGS TRACKER
+------------------------- */
+
+#endingsTracker {
+    margin: 30px auto 40px auto;
+    max-width: 500px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+#endingsTracker h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #2b2020;
+}
+
+.endingsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.endingUnlocked {
+    color: #2b7a4b;
+    font-weight: bold;
+}
+
+.endingLocked {
+    color: #b0a0a0;
+    font-style: italic;
 }
 
 
@@ -74,12 +110,10 @@ button:active {
     position: relative;
 
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     padding: 30px;
     box-sizing: border-box;
-
-    overflow: hidden;
 }
 
 
@@ -90,12 +124,13 @@ button:active {
 #agentName {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 20px;
+    margin: 0 0 25px 0;
 }
 
 
 /* -------------------------
    STORY TEXT
+   Anchored to bottom, grows UPWARD
 ------------------------- */
 
 #storyText {
@@ -106,21 +141,27 @@ button:active {
 
     left: 30px;
     right: 30px;
-    bottom: 115px;
+    bottom: 130px;
 
-    height: 120px;
+    max-height: 60vh;
 
-    padding: 25px;
+    padding: 25px 30px;
     box-sizing: border-box;
 
     border-radius: 12px;
 
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.55;
 
     margin: 0;
+}
 
-    overflow: hidden;
+#storyText p {
+    margin: 0 0 12px 0;
+}
+
+#storyText p:last-child {
+    margin-bottom: 0;
 }
 
 
@@ -133,16 +174,16 @@ button:active {
 
     left: 30px;
     right: 30px;
-    bottom: 10px;
+    bottom: 15px;
 
-    min-height: 80px;
+    min-height: 100px;
 
     text-align: center;
 }
 
 #choices p {
     font-size: 17px;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
 }
 
 
@@ -157,6 +198,11 @@ button:active {
     right: 30px;
 
     width: 220px;
+
+    background: rgba(255, 255, 255, 0.85);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 
@@ -165,12 +211,17 @@ button:active {
 ------------------------- */
 
 .stat {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+}
+
+.stat:last-child {
+    margin-bottom: 0;
 }
 
 .stat span {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 
 
@@ -185,8 +236,8 @@ button:active {
 }
 
 .bar {
-    width: 160px;
-    height: 12px;
+    flex: 1;
+    height: 10px;
 
     background: #ddd;
 
@@ -203,7 +254,9 @@ button:active {
 }
 
 .statNumber {
-    font-size: 14px;
+    font-size: 13px;
+    min-width: 35px;
+    text-align: right;
 }
 
 
@@ -212,6 +265,51 @@ button:active {
 ------------------------- */
 
 #continueButton {
-    display: block;
+    display: none;
     margin: 25px auto;
+}
+
+
+/* -------------------------
+   ENDING DISPLAY (overlay)
+------------------------- */
+
+#endingDisplay {
+    display: none;
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    background: rgba(65, 104, 150, 0.97);
+    color: white;
+
+    padding: 50px 70px;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+
+    max-width: 500px;
+    z-index: 100;
+}
+
+#endingDisplay h2 {
+    margin: 0 0 12px 0;
+    font-size: 36px;
+    letter-spacing: 1px;
+}
+
+#endingDisplay p {
+    margin: 0 0 24px 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+#endingDisplay button {
+    margin-top: 10px;
+    background: #dd6969;
 }

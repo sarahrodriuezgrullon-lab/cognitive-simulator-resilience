@@ -1,45 +1,63 @@
-<!DOCTYPE html> 
-<html lang="en"> 
- 
-<head> 
-    <meta charset="UTF-8"> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
     <title>Cognitive Simulator of Resilience</title>
     <link rel="stylesheet" href="style.css">
-</head> 
- 
+</head>
+
 <body>
 
-<div id="startScreen">
+    <!-- START SCREEN -->
+    <div id="startScreen">
 
-    <h1>Cognitive Simulator of Resilience</h1>
+        <h1>Cognitive Simulator of Resilience</h1>
 
-    <p>Independent research about resilience as systems of survival during hard experiences.</p>
+        <p>Independent research about resilience as systems of survival during hard experiences.</p>
 
-    <h2>Choose your agent</h2>
+        <!-- ENDINGS TRACKER -->
+        <div id="endingsTracker">
+            <h3>Endings unlocked: <span id="endingsCount">0</span> / 6</h3>
+            <div class="endingsGrid" id="endingsGrid"></div>
+        </div>
 
-    <button onclick="selectAgent('Samantha')">Samantha</button>
-    <button onclick="selectAgent('Fabián')">Fabián</button>
-    <button onclick="selectAgent('Mariana')">Mariana</button>
+        <h2>Choose your agent</h2>
 
-</div>
+        <button onclick="selectAgent('Samantha')">Samantha</button>
+        <button onclick="selectAgent('Fabián')">Fabián</button>
+        <button onclick="selectAgent('Mariana')">Mariana</button>
 
-
-<div id="gameScreen">
-
-    <h2 id="agentName">Samantha</h2>
-
-<div id="storyText">
-    Samantha is excited about the upcoming school trip.
-</div>
-
-<div id="choices"></div>
-
-<div id="statusPanel"></div>
-
-<button id="continueButton" onclick="continueStory()">Continue</button>
+    </div>
 
 
-<script src="script.js"></script>
+    <!-- GAME SCREEN -->
+    <div id="gameScreen">
+
+        <h2 id="agentName">Samantha</h2>
+
+        <div id="storyText">
+            Samantha is excited about the upcoming school trip.
+        </div>
+
+        <div id="choices"></div>
+
+        <div id="statusPanel"></div>
+
+        <button id="continueButton" onclick="continueStory()">Continue</button>
+
+    </div>
+
+
+    <!-- ENDING OVERLAY (outside gameScreen) -->
+    <div id="endingDisplay">
+        <h2 id="endingTitle"></h2>
+        <p id="endingSubtitle"></p>
+        <button onclick="resetGame()">Play again</button>
+    </div>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
