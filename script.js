@@ -48,12 +48,10 @@ function getAgentType() {
 // -------------------------
 
 const endingsList = [
-    { id: "recovered",   name: "She came back",     subtitle: "She found her way back to herself." },
-    { id: "survived",    name: "She got through it", subtitle: "Not great. Not terrible. She's still here." },
-    { id: "ranout",      name: "She ran out",        subtitle: "She kept going, but she has nothing left." },
-    { id: "disappeared", name: "She disappeared",    subtitle: "She stopped reaching out. No one noticed in time." },
-    { id: "grew",        name: "She grew",           subtitle: "She didn't just survive. She changed." },
-    { id: "numb",        name: "She went numb",      subtitle: "She stopped feeling. That was the only way." }
+    { id: "recovered", name: "She came back", subtitle: "She found her way back to herself." },
+    { id: "survived", name: "She got through it", subtitle: "Not great. Not terrible. She's still here." },
+    { id: "ranout", name: "She ran out", subtitle: "She kept going, but she has nothing left." },
+    { id: "grew", name: "She grew", subtitle: "She didn't just survive. She changed." }
 ];
 
 
@@ -1191,7 +1189,7 @@ function showEndingButton() {
 
 
 // -------------------------
-// ENDINGS
+// ENDINGS (CORREGIDO)
 // -------------------------
 
 function evaluateEnding() {
@@ -1207,11 +1205,14 @@ function evaluateEnding() {
 
     const score = resilience - load + 50;
 
+    // 1. FINALES NEGATIVOS
+    if (fatigue > 60 && selfEfficacy < 40) return "ranout";
+
+    // 2. FINALES POSITIVOS
     if (score > 80 && wellbeing > 60 && selfEfficacy > 60) return "grew";
     if (score > 65) return "recovered";
-    if (socialSupport < 45 && wellbeing < 40) return "disappeared";
-    if (fatigue > 60 && selfEfficacy < 40) return "ranout";
-    if (wellbeing < 25 && stress < 55) return "numb";
+
+    // 3. FINAL POR DEFECTO
     return "survived";
 }
 
