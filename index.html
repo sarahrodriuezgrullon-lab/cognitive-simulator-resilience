@@ -1,63 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Cognitive Simulator of Resilience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Simulator: Resilience & Adaptation</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- START SCREEN -->
     <div id="startScreen">
-
-        <h1>Cognitive Simulator of Resilience</h1>
-
-        <p>Independent research about resilience as systems of survival during hard experiences.</p>
-
-        <!-- ENDINGS TRACKER -->
-        <div id="endingsTracker">
-            <h3>Endings unlocked: <span id="endingsCount">0</span> / 4</h3>
-            <div class="endingsGrid" id="endingsGrid"></div>
+        
+        <!-- POST-IT IZQUIERDO: Viktor Frankl -->
+        <div class="post-it left-post-it">
+            <div class="tape"></div>
+            <p class="quote">"When we are no longer able to change a situation, we are challenged to change ourselves."</p>
+            <p class="author">— Viktor Frankl</p>
         </div>
 
-        <h2>Choose your agent</h2> 
+        <!-- CONTENIDO CENTRAL -->
+        <div class="center-content">
+            <h1>Cognitive Simulator: Resilience & Adaptation</h1>
+            <p class="subtitle">An interactive web-based simulator that models how individuals of different ages respond to stress, adversity, and life-changing decisions.</p>
 
-        <button onclick="selectAgent('Samantha')">Samantha</button>
-        <button onclick="selectAgent('Fabián')">Fabián</button>
-        <button onclick="selectAgent('Mariana')">Mariana</button>
+            <div id="endingsTracker">
+                <h3>Endings unlocked: <span id="endingsCount">0</span> / 4</h3>
+                <div class="endingsGrid" id="endingsGrid"></div>
+            </div>
+
+            <h2>Choose your agent</h2> 
+            <div class="agent-buttons">
+                <button onclick="selectAgent('Samantha')">Samantha (16)</button>
+                <button onclick="selectAgent('Fabián')">Fabián (27)</button>
+                <button onclick="selectAgent('Mariana')">Mariana (48)</button>
+            </div>
+
+            <div class="info-buttons">
+                <button onclick="openModal('bitacoraModal')">📓 Learning Journal</button>
+                <button onclick="openModal('referenciasModal')">📚 References</button>
+            </div>
+        </div>
+
+        <!-- POST-IT DERECHO: Ann Masten -->
+        <div class="post-it right-post-it">
+            <div class="tape"></div>
+            <p class="quote">"Resilience is ordinary magic."</p>
+            <p class="author">— Ann Masten</p>
+        </div>
 
     </div>
 
-
     <!-- GAME SCREEN -->
     <div id="gameScreen">
+        <!-- Contenedor para el Fondo -->
+        <div id="backgroundContainer"></div>
+        
+        <!-- Contenedor para el Avatar en el centro -->
+        <div id="avatarContainer"></div>
 
+        <!-- Nombre del personaje -->
         <h2 id="agentName">Samantha</h2>
 
+        <!-- Panel de Variables -->
+        <div id="statusPanel"></div>
+
+        <!-- Cuadro de texto abajo -->
         <div id="storyText">
             Samantha is excited about the upcoming school trip.
         </div>
 
+        <!-- Botones de opciones -->
         <div id="choices"></div>
 
-        <div id="statusPanel"></div>
-
         <button id="continueButton" style="display:none;">Continue</button>
-
     </div>
-
 
     <!-- ENDING OVERLAY -->
     <div id="endingDisplay" style="display:none;">
         <h2 id="endingTitle"></h2>
         <p id="endingSubtitle"></p>
-        <button onclick="resetGame()">Play again</button>
+        <button onclick="resetGame()">Return to Menu</button>
     </div>
 
+    <!-- MODAL: BITÁCORA -->
+    <div id="bitacoraModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bitacoraModal')">&times;</span>
+            <h2>Learning Journal</h2>
+            <p style="line-height: 1.8;"><em>This project began in December 2025 as a mod concept for The Sims 4. I wanted to model how trauma affects Sims, but I realized the game didn't give me the control I needed to measure psychological variables. So I decided to build my own simulator from scratch.</em></p>
+            <p style="line-height: 1.8;"><em>I taught myself HTML, CSS, and JavaScript using CS50 from Harvard and The Human Mind from MIT. Every decision in this simulator is backed by research on resilience and emotion regulation. I learned that resilience is not about avoiding pain, but about choosing how to go through it.</em></p>
+        </div>
+    </div>
+
+    <!-- MODAL: REFERENCIAS -->
+    <div id="referenciasModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('referenciasModal')">&times;</span>
+            <h2>Scientific References</h2>
+            <ul style="text-align: left; line-height: 2; padding-left: 20px;">
+                <li><strong>Coutu, D. L. (2002).</strong> How resilience works. Harvard Business Review.</li>
+                <li><strong>Frankl, V. E. (1946).</strong> Man's Search for Meaning.</li>
+                <li><strong>Masten, A. S., & Tellegen, A. (2012).</strong> Resilience in developmental psychopathology. Development and Psychopathology.</li>
+                <li><strong>Lupien, S. J., et al. (2009).</strong> Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience.</li>
+                <li><strong>Cohen, S., & Wills, T. A. (1985).</strong> Stress, social support, and the buffering hypothesis. Psychological Bulletin.</li>
+                <li><strong>Koole, S. L. (2008).</strong> The psychology of emotion regulation: An integrative review. Cognition and Emotion.</li>
+                <li><strong>Neenan, M. (2017).</strong> Attitude: The heart of resilience. In Developing Resilience. Routledge.</li>
+            </ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>

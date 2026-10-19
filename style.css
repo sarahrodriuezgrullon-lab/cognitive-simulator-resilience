@@ -1,318 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-
-    font-family: Georgia, 'Times New Roman', serif;
-    background: #f4eeee;
-    color: #2b2020;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fdfdfd;
+    color: #1a1a1a;
 }
 
-
 /* -------------------------
-   START SCREEN
+   START SCREEN & POST-ITS
 ------------------------- */
-
 #startScreen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    gap: 20px;
+    position: relative;
+}
+
+/* Contenido central */
+.center-content {
+    flex: 1;
     text-align: center;
-    padding: 60px 30px;
+    max-width: 600px;
+    z-index: 2;
 }
 
-#startScreen h1 {
-    font-size: 42px;
+.center-content h1 {
+    font-family: 'Georgia', serif;
+    font-size: 36px;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
-#startScreen p {
-    font-size: 18px;
-    margin-bottom: 45px;
+.subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
 }
 
-#startScreen h2 {
-    margin-bottom: 20px;
-}
-
-
-/* -------------------------
-   ENDINGS TRACKER
-------------------------- */
-
+/* ENDINGS TRACKER */
 #endingsTracker {
-    margin: 30px auto 40px auto;
+    margin: 0 auto 30px auto;
     max-width: 500px;
     padding: 20px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
 }
 
 #endingsTracker h3 {
     margin: 0 0 15px 0;
-    font-size: 18px;
-    color: #2b2020;
+    font-size: 14px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .endingsGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
+    font-size: 13px;
     text-align: left;
-    font-size: 15px;
 }
 
 .endingUnlocked {
-    color: #2b7a4b;
+    color: #1a1a1a;
     font-weight: bold;
+    border-left: 3px solid #1a1a1a;
+    padding-left: 10px;
 }
 
 .endingLocked {
-    color: #b0a0a0;
+    color: #999;
     font-style: italic;
+    border-left: 3px solid #ddd;
+    padding-left: 10px;
 }
 
-
-/* -------------------------
-   BUTTONS
-------------------------- */
-
+/* BOTONES */
 button {
-    padding: 12px 22px;
-    margin: 6px;
-    font-size: 16px;
+    padding: 12px 24px;
+    margin: 5px;
+    font-size: 14px;
     cursor: pointer;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #dd6969;
-    color: white;
-
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    background: transparent;
+    color: #1a1a1a;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: all 0.2s;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+    background: #1a1a1a;
+    color: #fff;
 }
 
-button:active {
-    transform: translateY(0);
+.agent-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
+.agent-buttons button {
+    padding: 15px;
+    font-size: 16px;
+}
+
+.info-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.info-buttons button {
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+}
+
+/* POST-ITS */
+.post-it {
+    width: 220px;
+    padding: 25px 20px 20px 20px;
+    background: #fef9c3;
+    box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    transform: rotate(-3deg);
+    z-index: 1;
+}
+
+.right-post-it {
+    background: #e0f2fe;
+    transform: rotate(3deg);
+}
+
+.tape {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.post-it .quote {
+    font-style: italic;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.post-it .author {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+    text-align: right;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+}
 
 /* -------------------------
    GAME SCREEN
 ------------------------- */
-
 #gameScreen {
     display: none;
     position: relative;
-
     width: 100%;
-    min-height: 100vh;
-
-    padding: 30px;
+    height: 100vh;
     box-sizing: border-box;
 }
 
-
-/* -------------------------
-   CHARACTER NAME
-------------------------- */
-
-#agentName {
-    text-align: center;
-    font-size: 30px;
-    margin: 0 0 25px 0;
-}
-
-
-/* -------------------------
-   STORY TEXT
-   Anchored to bottom, grows UPWARD
-------------------------- */
-
-#storyText {
-    background: #416896;
-    color: white;
-
+/* Espacio para el Fondo (opcional) */
+#backgroundContainer {
     position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    background: #fdfdfd; /* Puedes cambiarlo por una imagen luego */
+}
 
-    left: 30px;
-    right: 30px;
-    bottom: 160px;
+/* Espacio para el Avatar en el Centro */
+#avatarContainer {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 450px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    z-index: 1;
+}
 
-    max-height: 60vh;
-
-    padding: 25px 30px;
-    box-sizing: border-box;
-
-    border-radius: 12px;
-
-    font-size: 18px;
-    line-height: 1.55;
-
+/* Nombre del personaje */
+#agentName {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    font-weight: normal;
     margin: 0;
-
-    overflow-y: auto;
+    z-index: 10;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 5px;
 }
 
-#storyText p {
-    margin: 0 0 12px 0;
+/* EL CUADRO DE TEXTO (Abajo) */
+#storyText {
+    position: absolute;
+    bottom: 120px;
+    left: 10%;
+    right: 10%;
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-#storyText p:last-child {
-    margin-bottom: 0;
-}
-
-
-/* -------------------------
-   CHOICES
-------------------------- */
-
+/* LAS OPCIONES */
 #choices {
     position: absolute;
-
-    left: 30px;
-    right: 30px;
-    bottom: 15px;
-
-    min-height: 130px;
-
-    text-align: center;
+    bottom: 20px;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    z-index: 10;
 }
 
 #choices p {
-    font-size: 17px;
-    margin: 0 0 10px 0;
-    color: #2b2020;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 5px 0;
 }
 
+#choices button {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 200px;
+}
 
-/* -------------------------
-   STATUS PANEL
-------------------------- */
+#choices button:hover {
+    border-color: #1a1a1a;
+    background: #f9f9f9;
+}
 
+/* PANEL DE VARIABLES (Colores planos) */
 #statusPanel {
     position: absolute;
-
     top: 30px;
     right: 30px;
-
     width: 220px;
-
-    background: rgba(255, 255, 255, 0.85);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    z-index: 10;
 }
 
-
-/* -------------------------
-   INDIVIDUAL STAT
-------------------------- */
-
-.stat {
-    margin-bottom: 12px;
-}
-
-.stat:last-child {
-    margin-bottom: 0;
-}
-
+.stat { margin-bottom: 12px; }
 .stat span {
     display: block;
     margin-bottom: 4px;
-    font-size: 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+    font-weight: 600;
 }
-
-
-/* -------------------------
-   STAT BARS
-------------------------- */
-
-.barContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
+.barContainer { display: flex; align-items: center; gap: 10px; }
 .bar {
     flex: 1;
-    height: 10px;
-
-    background: #ddd;
-
-    border-radius: 10px;
+    height: 8px;
+    background: #eee;
+    border-radius: 2px;
     overflow: hidden;
 }
-
 .barFill {
     height: 100%;
-
-    background: #803838;
-
     transition: width 0.4s ease;
 }
 
+/* Colores planos para las barras */
+.fill-stress { background: #b91c1c; }
+.fill-social { background: #1d4ed8; }
+.fill-efficacy { background: #b45309; }
+.fill-fatigue { background: #4c1d95; }
+.fill-wellbeing { background: #15803d; }
+
 .statNumber {
-    font-size: 13px;
-    min-width: 35px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 30px;
     text-align: right;
 }
 
-
-/* -------------------------
-   CONTINUE BUTTON
-------------------------- */
-
+/* Botón Continue */
 #continueButton {
     display: none;
-    margin: 25px auto;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
 }
 
-
-/* -------------------------
-   ENDING DISPLAY (overlay)
-------------------------- */
-
+/* ENDING DISPLAY */
 #endingDisplay {
     display: none;
-
     position: fixed;
-
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-
     text-align: center;
-
-    background: rgba(65, 104, 150, 0.97);
-    color: white;
-
-    padding: 50px 70px;
-    border-radius: 16px;
-
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-
+    background: #fff;
+    color: #1a1a1a;
+    padding: 50px;
+    border-radius: 8px;
+    border: 1px solid #1a1a1a;
     max-width: 500px;
     z-index: 100;
 }
+#endingDisplay h2 { font-family: 'Georgia', serif; margin: 0 0 15px 0; font-size: 32px; }
+#endingDisplay p { margin: 0 0 25px 0; font-size: 16px; color: #555; }
+#endingDisplay button { background: #1a1a1a; color: #fff; border: none; padding: 12px 25px; border-radius: 4px; cursor: pointer;}
 
-#endingDisplay h2 {
-    margin: 0 0 12px 0;
-    font-size: 36px;
-    letter-spacing: 1px;
-}
+/* MODALS */
+.modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(255,255,255,0.8); backdrop-filter: blur(5px); }
+.modal-content { background-color: #fff; margin: 10% auto; padding: 40px; border-radius: 8px; width: 80%; max-width: 600px; max-height: 70vh; overflow-y: auto; border: 1px solid #1a1a1a; position: relative; }
+.modal-content h2 { font-family: 'Georgia', serif; margin-top: 0; }
+.close { color: #555; position: absolute; top: 15px; right: 25px; font-size: 30px; font-weight: bold; cursor: pointer; }
+.close:hover { color: #000; }
 
-#endingDisplay p {
-    margin: 0 0 24px 0;
-    font-size: 16px;
-    opacity: 0.9;
-}
-
-#endingDisplay button {
-    margin-top: 10px;
-    background: #dd6969;
+/* Responsive */
+@media (max-width: 900px) {
+    #startScreen {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .post-it {
+        display: none;
+    }
 }

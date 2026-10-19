@@ -16,17 +16,17 @@ The project began in December 2025 as a mod concept for *The Sims 4* and evolved
 
 ## Current Status
 
-- ✅ Day 1 implemented and playable
-- ✅ Day 2 implemented (6 states, endings system)
+- ✅ Day 1 and Day 2 implemented and playable
 - ✅ Samantha (age 16) fully playable
-- 🔄 Fabian (age 27) in development
+- ✅ Fabian (age 27) fully playable (with dynamic Day 2 based on Day 1 choices)
+- ✅ Learning Journal, References, and Development Timeline integrated into the UI
 - 🔄 Mariana (age 48) in development
-- 🔄 Interactive development timeline in progress
+- 🔄 Adding avatars and scene backgrounds
 
 ## Built With
 
 - **HTML** — structure and interface
-- **CSS** — visual design and layout
+- **CSS** — visual design and layout (Lab Notebook aesthetic)
 - **JavaScript** — simulation logic, states, and endings
 - **Git/GitHub** — version control and documentation
 
@@ -40,12 +40,14 @@ The simulator is informed by independent research on resilience, stress, and emo
 - Shelley Taylor
 - George Bonanno
 - Susan Coutu
+- Sander Koole
+- Michael Neenan
 
 Research is organized and tracked using **Research Rabbit**, **Obsidian**, and **Joplin**.
 
 ## Development Journal
 
-I maintain a learning journal (*bitácora*) documenting the creative, technical, and strategic process behind the simulator. It includes:
+I maintain a learning journal (*bitácora*) integrated directly into the website, documenting the creative, technical, and strategic process behind the simulator. It includes:
 
 - Design decisions and iterations
 - Changes in direction (from *The Sims 4* mod to standalone simulator)
@@ -54,11 +56,12 @@ I maintain a learning journal (*bitácora*) documenting the creative, technical,
 
 ## Roadmap
 
-- [ ] Complete Samantha's full storyline
-- [ ] Implement Fabian's storyline
-- [ ] Implement Mariana's storyline
-- [ ] Publish an interactive timeline documenting all changes and decisions
-- [ ] Expand the endings system across all characters
+- [x] Complete Samantha's full storyline
+- [x] Implement Fabian's storyline
+- [ ] Implement Mariana's storyline (3-day storyline)
+- [x] Publish an interactive timeline documenting all changes and decisions
+- [x] Integrate Learning Journal and Scientific References into the main page
+- [ ] Add custom avatars and scene backgrounds for each character
 - [ ] Add accessibility features and mobile support
 
 ## Author

@@ -668,11 +668,11 @@ function updateStatus() {
     let statusPanel = document.getElementById("statusPanel");
 
     statusPanel.innerHTML =
-        "<div class='stat'><span>Stress</span><div class='barContainer'><div class='bar'><div class='barFill' style='width: " + stress + "%'></div></div><span class='statNumber'>" + stress + "%</span></div></div>" +
-        "<div class='stat'><span>Social Support</span><div class='barContainer'><div class='bar'><div class='barFill' style='width: " + socialSupport + "%'></div></div><span class='statNumber'>" + socialSupport + "%</span></div></div>" +
-        "<div class='stat'><span>Self-Efficacy</span><div class='barContainer'><div class='bar'><div class='barFill' style='width: " + selfEfficacy + "%'></div></div><span class='statNumber'>" + selfEfficacy + "%</span></div></div>" +
-        "<div class='stat'><span>Fatigue</span><div class='barContainer'><div class='bar'><div class='barFill' style='width: " + fatigue + "%'></div></div><span class='statNumber'>" + fatigue + "%</span></div></div>" +
-        "<div class='stat'><span>Well-being</span><div class='barContainer'><div class='bar'><div class='barFill' style='width: " + wellbeing + "%'></div></div><span class='statNumber'>" + wellbeing + "%</span></div></div>";
+        "<div class='stat'><span>Stress</span><div class='barContainer'><div class='bar'><div class='barFill fill-stress' style='width: " + stress + "%'></div></div><span class='statNumber'>" + stress + "%</span></div></div>" +
+        "<div class='stat'><span>Social Support</span><div class='barContainer'><div class='bar'><div class='barFill fill-social' style='width: " + socialSupport + "%'></div></div><span class='statNumber'>" + socialSupport + "%</span></div></div>" +
+        "<div class='stat'><span>Self-Efficacy</span><div class='barContainer'><div class='bar'><div class='barFill fill-efficacy' style='width: " + selfEfficacy + "%'></div></div><span class='statNumber'>" + selfEfficacy + "%</span></div></div>" +
+        "<div class='stat'><span>Fatigue</span><div class='barContainer'><div class='bar'><div class='barFill fill-fatigue' style='width: " + fatigue + "%'></div></div><span class='statNumber'>" + fatigue + "%</span></div></div>" +
+        "<div class='stat'><span>Well-being</span><div class='barContainer'><div class='bar'><div class='barFill fill-wellbeing' style='width: " + wellbeing + "%'></div></div><span class='statNumber'>" + wellbeing + "%</span></div></div>";
 }
 
 
@@ -957,3 +957,22 @@ function renderEndingsTracker() {
 }
 
 renderEndingsTracker();
+
+// -------------------------
+// MODAL CONTROLS
+// -------------------------
+
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+// Cerrar modal si se hace clic fuera
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+    }
+}
