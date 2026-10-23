@@ -656,6 +656,7 @@ function selectAgent(agentName) {
     document.getElementById("gameScreen").style.display = "block";
     document.getElementById("agentName").textContent = agentName;
 
+    enterGameMode();
     startStory(agentName);
 }
 
@@ -873,16 +874,16 @@ function evaluateEnding() {
     const load = (stress * profile.stressWeight) + (fatigue * profile.fatigueWeight);
     const score = resilience - load + 50;
 
-    // Final negativo
+    // Negative ending
     if (fatigue > 60 && selfEfficacy < 40) return "ranout";
     
-    // "He grew" ahora es más alcanzable
+    // "Grew" is now more achievable
     if (score > 70 && wellbeing > 55 && selfEfficacy > 55) return "grew";
     
-    // "He came back"
+    // "Came back"
     if (score > 60) return "recovered";
     
-    // "He got through it"
+    // "Got through it"
     return "survived";
 }
 
@@ -925,6 +926,7 @@ function resetGame() {
     document.getElementById("startScreen").style.display = "block";
     document.getElementById("gameScreen").style.display = "none";
 
+    exitGameMode();
     renderEndingsTracker();
 }
 
@@ -958,21 +960,46 @@ function renderEndingsTracker() {
 
 renderEndingsTracker();
 
+
 // -------------------------
-// MODAL CONTROLS
+// SECTION NAVIGATION
 // -------------------------
 
-function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
-}
+function showSection(sectionName) {
+    // Hide all sections
+    const sections = document.querySelectorAll('.page-section');
+    sections.forEach(s => s.classList.remove('active'));
 
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = "none";
-}
+    // Remove 'active' class from nav buttons
+    const navButtons = document.querySelectorAll('.nav-links button');
+    navButtons.forEach(b => b.classList.remove('active'));
 
-// Cerrar modal si se hace clic fuera
-window.onclick = function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.style.display = "none";
+    // Show the selected section
+    document.getElementById(sectionName + 'Section').classList.add('active');
+    
+    // Mark the button as active
+    const activeBtn = document.getElementById('btn-' + sectionName);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Ensure we are not in game mode (restore navbar if it was hidden)
+    document.body.classList.remove('playing-game');
+    
+    // If we leave the simulator, reset the game so it doesn't stay half-played
+    if (sectionName !== 'simulator') {
+        resetGame(); 
     }
+}
+
+// -------------------------
+// GAME MODE CONTROLS
+// -------------------------
+
+// Call this function when the player selects a character
+function enterGameMode() {
+    document.body.classList.add('playing-game');
+}
+
+// Call this function when the player returns to the menu
+function exitGameMode() {
+    document.body.classList.remove('playing-game');
 }

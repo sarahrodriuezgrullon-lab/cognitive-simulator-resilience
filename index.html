@@ -8,106 +8,151 @@
 </head>
 <body>
 
-    <!-- START SCREEN -->
-    <div id="startScreen">
-        
-        <!-- POST-IT IZQUIERDO: Viktor Frankl -->
-        <div class="post-it left-post-it">
-            <div class="tape"></div>
-            <p class="quote">"When we are no longer able to change a situation, we are challenged to change ourselves."</p>
-            <p class="author">— Viktor Frankl</p>
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    <nav id="navbar">
+        <div class="nav-brand">Resilience & Adaptation</div>
+        <div class="nav-links">
+            <button onclick="showSection('simulator')" id="btn-simulator">Simulator</button>
+            <button onclick="showSection('journal')" id="btn-journal">Learning Journal</button>
+            <button onclick="showSection('references')" id="btn-references">References</button>
         </div>
+    </nav>
 
-        <!-- CONTENIDO CENTRAL -->
-        <div class="center-content">
-            <h1>Cognitive Simulator: Resilience & Adaptation</h1>
-            <p class="subtitle">An interactive web-based simulator that models how individuals of different ages respond to stress, adversity, and life-changing decisions.</p>
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main id="mainContainer">
 
-            <div id="endingsTracker">
-                <h3>Endings unlocked: <span id="endingsCount">0</span> / 4</h3>
-                <div class="endingsGrid" id="endingsGrid"></div>
+        <!-- SECCIÓN 1: EL SIMULADOR -->
+        <section id="simulatorSection" class="page-section active">
+            
+            <!-- START SCREEN -->
+            <div id="startScreen">
+                <div class="post-it left-post-it">
+                    <div class="tape"></div>
+                    <p class="quote">"When we are no longer able to change a situation, we are challenged to change ourselves."</p>
+                    <p class="author">— Viktor Frankl</p>
+                </div>
+
+                <div class="center-content">
+                    <h1>Cognitive Simulator: Resilience & Adaptation</h1>
+                    <p class="subtitle">An interactive web-based simulator that models how individuals of different ages respond to stress, adversity, and life-changing decisions.</p>
+
+                    <div id="endingsTracker">
+                        <h3>Endings unlocked: <span id="endingsCount">0</span> / 4</h3>
+                        <div class="endingsGrid" id="endingsGrid"></div>
+                    </div>
+
+                    <h2>Choose your agent</h2> 
+                    <div class="agent-buttons">
+                        <button onclick="selectAgent('Samantha')">Samantha (16)</button>
+                        <button onclick="selectAgent('Fabián')">Fabián (27)</button>
+                        <button onclick="selectAgent('Mariana')">Mariana (48)</button>
+                    </div>
+                </div>
+
+                <div class="post-it right-post-it">
+                    <div class="tape"></div>
+                    <p class="quote">"Resilience is ordinary magic."</p>
+                    <p class="author">— Ann Masten</p>
+                </div>
             </div>
 
-            <h2>Choose your agent</h2> 
-            <div class="agent-buttons">
-                <button onclick="selectAgent('Samantha')">Samantha (16)</button>
-                <button onclick="selectAgent('Fabián')">Fabián (27)</button>
-                <button onclick="selectAgent('Mariana')">Mariana (48)</button>
+            <!-- GAME SCREEN -->
+            <div id="gameScreen">
+                <div id="backgroundContainer"></div>
+                <div id="avatarContainer"></div>
+                <h2 id="agentName">Samantha</h2>
+                <div id="statusPanel"></div>
+                <div id="storyText">Samantha is excited about the upcoming school trip.</div>
+                <div id="choices"></div>
+                <button id="continueButton" style="display:none;">Continue</button>
             </div>
 
-            <div class="info-buttons">
-                <button onclick="openModal('bitacoraModal')">📓 Learning Journal</button>
-                <button onclick="openModal('referenciasModal')">📚 References</button>
+            <!-- ENDING OVERLAY -->
+            <div id="endingDisplay" style="display:none;">
+                <h2 id="endingTitle"></h2>
+                <p id="endingSubtitle"></p>
+                <button onclick="resetGame()">Return to Menu</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: LEARNING JOURNAL -->
+        <section id="journalSection" class="page-section">
+            <div class="content-wrapper">
+                <h2>Learning Journal</h2>
+                <p>A look into the creative, technical, and strategic process behind the simulator.</p>
+                
+                <div class="journal-entry">
+                    <h3>January 2, 2026 — The Origin</h3>
+                    <p><em>"My idea for my university portfolio: a cognitive-narrative behavior simulation project. A mod for The Sims 4 that models the cognitive impact of trauma in simulated agents with emergent narrative..."</em></p>
+                </div>
+
+                <div class="journal-entry">
+                    <h3>March 17, 2026 — The Pivot</h3>
+                    <p><em>"After looking for tutorials on how to make mods for The Sims 4... I realized it was not going to be practical. I needed to look for another way to build my portfolio."</em></p>
+                </div>
+
+                <div class="journal-entry">
+                    <h3>July 2026 — Defining the Variables</h3>
+                    <p><em>"I defined the five core bars of the agent. Stress: the thermometer of the problem. Social Support: the lifesaver. Self-Efficacy: the engine. Fatigue: the fuel. Well-being: the internal climate."</em></p>
+                </div>
+
+                <div class="journal-entry">
+                    <h3>October 3, 2026 — My Little Online Guide</h3>
+                    <p><em>"My research process began with constant searches for cognitive science content on YouTube. Over time, the algorithm recommended the channel of Charlotte Fraza... Through her videos, I discovered Research Rabbit..."</em></p>
+                </div>
+
+                <!-- Timeline y Bocetos dentro de la Bitácora -->
+                <h3 style="margin-top: 50px;">Development Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="date">December 2025</span>
+                        <p>Initial idea for a The Sims 4 mod.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="date">March 2026</span>
+                        <p>Pivot to web development.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="date">September 2026</span>
+                        <p>Samantha completed.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="date">October 2026</span>
+                        <p>Fabián completed. New engine integrated.</p>
+                    </div>
+                </div>
+
+                                <!-- BOCETOS A MANO -->
+        <div id="sketchesSection" class="content-block">
+            <h2>Initial Sketches</h2>
+            <p style="color: #555; margin-bottom: 20px;">Before writing any code, I mapped out the decision trees on paper.</p>
+                       <div class="sketch-gallery">
+                <img src="images/boceto1.jpg" alt="Sketch 1" class="sketch-img">
+                <img src="images/boceto2.jpg" alt="Sketch 2" class="sketch-img">
+                <img src="images/boceto3.jpg" alt="Sketch 3" class="sketch-img">
+                <img src="images/boceto4.jpg" alt="Sketch 4" class="sketch-img">
+                <img src="images/boceto5.jpg" alt="Sketch 5" class="sketch-img">
+                <img src="images/boceto6.jpg" alt="Sketch 6" class="sketch-img">
             </div>
         </div>
 
-        <!-- POST-IT DERECHO: Ann Masten -->
-        <div class="post-it right-post-it">
-            <div class="tape"></div>
-            <p class="quote">"Resilience is ordinary magic."</p>
-            <p class="author">— Ann Masten</p>
-        </div>
+        <!-- SECCIÓN 3: REFERENCIAS -->
+        <section id="referencesSection" class="page-section">
+            <div class="content-wrapper">
+                <h2>Scientific References</h2>
+                <ul class="references-list">
+                    <li><strong>Coutu, D. L. (2002).</strong> How resilience works. Harvard Business Review.</li>
+                    <li><strong>Frankl, V. E. (1946).</strong> Man's Search for Meaning.</li>
+                    <li><strong>Masten, A. S., & Tellegen, A. (2012).</strong> Resilience in developmental psychopathology.</li>
+                    <li><strong>Lupien, S. J., et al. (2009).</strong> Effects of stress throughout the lifespan...</li>
+                    <li><strong>Cohen, S., & Wills, T. A. (1985).</strong> Stress, social support, and the buffering hypothesis.</li>
+                    <li><strong>Koole, S. L. (2008).</strong> The psychology of emotion regulation.</li>
+                    <li><strong>Neenan, M. (2017).</strong> Attitude: The heart of resilience.</li>
+                </ul>
+            </div>
+        </section>
 
-    </div>
-
-    <!-- GAME SCREEN -->
-    <div id="gameScreen">
-        <!-- Contenedor para el Fondo -->
-        <div id="backgroundContainer"></div>
-        
-        <!-- Contenedor para el Avatar en el centro -->
-        <div id="avatarContainer"></div>
-
-        <!-- Nombre del personaje -->
-        <h2 id="agentName">Samantha</h2>
-
-        <!-- Panel de Variables -->
-        <div id="statusPanel"></div>
-
-        <!-- Cuadro de texto abajo -->
-        <div id="storyText">
-            Samantha is excited about the upcoming school trip.
-        </div>
-
-        <!-- Botones de opciones -->
-        <div id="choices"></div>
-
-        <button id="continueButton" style="display:none;">Continue</button>
-    </div>
-
-    <!-- ENDING OVERLAY -->
-    <div id="endingDisplay" style="display:none;">
-        <h2 id="endingTitle"></h2>
-        <p id="endingSubtitle"></p>
-        <button onclick="resetGame()">Return to Menu</button>
-    </div>
-
-    <!-- MODAL: BITÁCORA -->
-    <div id="bitacoraModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('bitacoraModal')">&times;</span>
-            <h2>Learning Journal</h2>
-            <p style="line-height: 1.8;"><em>This project began in December 2025 as a mod concept for The Sims 4. I wanted to model how trauma affects Sims, but I realized the game didn't give me the control I needed to measure psychological variables. So I decided to build my own simulator from scratch.</em></p>
-            <p style="line-height: 1.8;"><em>I taught myself HTML, CSS, and JavaScript using CS50 from Harvard and The Human Mind from MIT. Every decision in this simulator is backed by research on resilience and emotion regulation. I learned that resilience is not about avoiding pain, but about choosing how to go through it.</em></p>
-        </div>
-    </div>
-
-    <!-- MODAL: REFERENCIAS -->
-    <div id="referenciasModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('referenciasModal')">&times;</span>
-            <h2>Scientific References</h2>
-            <ul style="text-align: left; line-height: 2; padding-left: 20px;">
-                <li><strong>Coutu, D. L. (2002).</strong> How resilience works. Harvard Business Review.</li>
-                <li><strong>Frankl, V. E. (1946).</strong> Man's Search for Meaning.</li>
-                <li><strong>Masten, A. S., & Tellegen, A. (2012).</strong> Resilience in developmental psychopathology. Development and Psychopathology.</li>
-                <li><strong>Lupien, S. J., et al. (2009).</strong> Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience.</li>
-                <li><strong>Cohen, S., & Wills, T. A. (1985).</strong> Stress, social support, and the buffering hypothesis. Psychological Bulletin.</li>
-                <li><strong>Koole, S. L. (2008).</strong> The psychology of emotion regulation: An integrative review. Cognition and Emotion.</li>
-                <li><strong>Neenan, M. (2017).</strong> Attitude: The heart of resilience. In Developing Resilience. Routledge.</li>
-            </ul>
-        </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
