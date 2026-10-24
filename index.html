@@ -20,40 +20,47 @@
 
     <!-- CONTENEDOR PRINCIPAL -->
     <main id="mainContainer">
-
-        <!-- SECCIÓN 1: EL SIMULADOR -->
         <section id="simulatorSection" class="page-section active">
-            
-            <!-- START SCREEN -->
             <div id="startScreen">
-                <div class="post-it left-post-it">
-                    <div class="tape"></div>
-                    <p class="quote">"When we are no longer able to change a situation, we are challenged to change ourselves."</p>
-                    <p class="author">— Viktor Frankl</p>
-                </div>
+                <article class="hook-card left-character-card">
+                    <h3>Samantha (16)</h3>
+                    <p>Her mom just told her she can't go on the school trip. Her friends are already packing.</p>
+                    <ul class="hook-choices">
+                        <li>Post a crying selfie on Close Friends</li>
+                        <li>Lie to her mom and say she's staying at a friend's house</li>
+                    </ul>
+                </article>
 
                 <div class="center-content">
-                    <h1>Cognitive Simulator: Resilience & Adaptation</h1>
-                    <p class="subtitle">An interactive web-based simulator that models how individuals of different ages respond to stress, adversity, and life-changing decisions.</p>
+                    <h1>Cognitive Simulator: Resilience &amp; Adaptation</h1>
+                    <p class="subtitle">An interactive simulator exploring how people respond to stress, adversity, and life-changing decisions.</p>
 
                     <div id="endingsTracker">
                         <h3>Endings unlocked: <span id="endingsCount">0</span> / 4</h3>
                         <div class="endingsGrid" id="endingsGrid"></div>
                     </div>
 
-                    <h2>Choose your agent</h2> 
+                    <h2>Choose your agent</h2>
                     <div class="agent-buttons">
                         <button onclick="selectAgent('Samantha')">Samantha (16)</button>
                         <button onclick="selectAgent('Fabián')">Fabián (27)</button>
                         <button onclick="selectAgent('Mariana')">Mariana (48)</button>
                     </div>
+
+                    <div class="info-buttons" aria-label="More information">
+                        <button onclick="showSection('journal')">Learning Journal</button>
+                        <button onclick="showSection('references')">References</button>
+                    </div>
                 </div>
 
-                <div class="post-it right-post-it">
-                    <div class="tape"></div>
-                    <p class="quote">"Resilience is ordinary magic."</p>
-                    <p class="author">— Ann Masten</p>
-                </div>
+                <article class="hook-card right-character-card">
+                    <h3>Fabián (27)</h3>
+                    <p>He just got fired from the job he thought was his career. The apartment is too quiet.</p>
+                    <ul class="hook-choices">
+                        <li>Consider taking more medication than prescribed</li>
+                        <li>Text his ex-girlfriend at 2 AM</li>
+                    </ul>
+                </article>
             </div>
 
             <!-- GAME SCREEN -->
@@ -101,8 +108,8 @@
                     <p><em>"My research process began with constant searches for cognitive science content on YouTube. Over time, the algorithm recommended the channel of Charlotte Fraza... Through her videos, I discovered Research Rabbit..."</em></p>
                 </div>
 
-                <!-- Timeline y Bocetos dentro de la Bitácora -->
-                <h3 style="margin-top: 50px;">Development Timeline</h3>
+            <section aria-labelledby="timelineHeading">
+                <h3 id="timelineHeading" style="margin-top: 50px;">Development Timeline</h3>
                 <div class="timeline">
                     <div class="timeline-item">
                         <span class="date">December 2025</span>
@@ -121,34 +128,50 @@
                         <p>Fabián completed. New engine integrated.</p>
                     </div>
                 </div>
+                </section>
 
-                                <!-- BOCETOS A MANO -->
-        <div id="sketchesSection" class="content-block">
-            <h2>Initial Sketches</h2>
-            <p style="color: #555; margin-bottom: 20px;">Before writing any code, I mapped out the decision trees on paper.</p>
-                       <div class="sketch-gallery">
-                <img src="images/boceto1.jpg" alt="Sketch 1" class="sketch-img">
-                <img src="images/boceto2.jpg" alt="Sketch 2" class="sketch-img">
-                <img src="images/boceto3.jpg" alt="Sketch 3" class="sketch-img">
-                <img src="images/boceto4.jpg" alt="Sketch 4" class="sketch-img">
-                <img src="images/boceto5.jpg" alt="Sketch 5" class="sketch-img">
-                <img src="images/boceto6.jpg" alt="Sketch 6" class="sketch-img">
+                <section id="sketchesSection" aria-labelledby="sketchesHeading">
+                    <h3 id="sketchesHeading">Initial Sketches</h3>
+                    <p>Before writing any code, I mapped out the decision trees on paper.</p>
+                    <div class="sketch-gallery">
+                        <img src="images/boceto1.jpeg" alt="Sketch 1" class="sketch-img">
+                        <img src="images/boceto2.jpeg" alt="Sketch 2" class="sketch-img">
+                        <img src="images/boceto3.jpeg" alt="Sketch 3" class="sketch-img">
+                        <img src="images/boceto4.jpeg" alt="Sketch 4" class="sketch-img">
+                        <img src="images/boceto5.jpeg" alt="Sketch 5" class="sketch-img">
+                        <img src="images/boceto6.jpeg" alt="Sketch 6" class="sketch-img">
+                    </div>
+                </section>
             </div>
-        </div>
+        </section>
 
         <!-- SECCIÓN 3: REFERENCIAS -->
         <section id="referencesSection" class="page-section">
-            <div class="content-wrapper">
-                <h2>Scientific References</h2>
-                <ul class="references-list">
-                    <li><strong>Coutu, D. L. (2002).</strong> How resilience works. Harvard Business Review.</li>
-                    <li><strong>Frankl, V. E. (1946).</strong> Man's Search for Meaning.</li>
-                    <li><strong>Masten, A. S., & Tellegen, A. (2012).</strong> Resilience in developmental psychopathology.</li>
-                    <li><strong>Lupien, S. J., et al. (2009).</strong> Effects of stress throughout the lifespan...</li>
-                    <li><strong>Cohen, S., & Wills, T. A. (1985).</strong> Stress, social support, and the buffering hypothesis.</li>
-                    <li><strong>Koole, S. L. (2008).</strong> The psychology of emotion regulation.</li>
-                    <li><strong>Neenan, M. (2017).</strong> Attitude: The heart of resilience.</li>
-                </ul>
+            <div class="references-layout">
+                <aside class="post-it reference-note left-reference-note">
+                    <div class="tape"></div>
+                    <p class="quote">"When we are no longer able to change a situation, we are challenged to change ourselves."</p>
+                    <p class="author">— Viktor Frankl</p>
+                </aside>
+
+                <div class="content-wrapper references-content">
+                    <h2>Scientific References</h2>
+                    <ul class="references-list">
+                        <li><strong>Coutu, D. L. (2002).</strong> How resilience works. Harvard Business Review.</li>
+                        <li><strong>Frankl, V. E. (1946).</strong> Man's Search for Meaning.</li>
+                        <li><strong>Masten, A. S., &amp; Tellegen, A. (2012).</strong> Resilience in developmental psychopathology.</li>
+                        <li><strong>Lupien, S. J., et al. (2009).</strong> Effects of stress throughout the lifespan...</li>
+                        <li><strong>Cohen, S., &amp; Wills, T. A. (1985).</strong> Stress, social support, and the buffering hypothesis.</li>
+                        <li><strong>Koole, S. L. (2008).</strong> The psychology of emotion regulation.</li>
+                        <li><strong>Neenan, M. (2017).</strong> Attitude: The heart of resilience.</li>
+                    </ul>
+                </div>
+
+                <aside class="post-it right-post-it reference-note right-reference-note">
+                    <div class="tape"></div>
+                    <p class="quote">"Resilience is ordinary magic."</p>
+                    <p class="author">— Ann Masten</p>
+                </aside>
             </div>
         </section>
 

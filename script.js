@@ -923,7 +923,7 @@ function resetGame() {
     usedVices = false;
 
     document.getElementById("endingDisplay").style.display = "none";
-    document.getElementById("startScreen").style.display = "block";
+    document.getElementById("startScreen").style.display = "grid";
     document.getElementById("gameScreen").style.display = "none";
 
     exitGameMode();
