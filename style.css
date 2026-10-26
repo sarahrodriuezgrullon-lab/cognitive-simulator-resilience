@@ -272,6 +272,87 @@ body.playing-game #mainContainer { margin-top: 0; }
     margin-bottom: 30px;
 }
 
+.story-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 48px);
+    background: #fffdf8;
+    border: 1px solid #e8e1d5;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.story-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 3vw, 28px);
+    margin-bottom: 28px;
+}
+
+.story-title h3 {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    text-align: center;
+}
+
+.story-butterfly {
+    width: clamp(32px, 7vw, 56px);
+    height: clamp(32px, 7vw, 56px);
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.story-butterfly-right {
+    transform: scaleX(-1) rotate(-12deg);
+}
+
+.story-butterfly-left {
+    transform: rotate(12deg);
+}
+
+.story-prose {
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #333;
+    white-space: pre-line;
+}
+
+.story-prose h4 {
+    margin: 36px 0 12px;
+    font-family: 'Georgia', serif;
+    font-size: 21px;
+    line-height: 1.4;
+    color: #1a1a1a;
+}
+
+.story-prose h4:first-child {
+    margin-top: 0;
+}
+
+.story-illustration {
+    margin: 32px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.story-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #e8e1d5;
+    border-radius: 6px;
+}
+
+.story-illustration figcaption {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+
 .journal-entry {
     background: #fef9c3;
     padding: 25px;
