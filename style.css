@@ -227,6 +227,10 @@ body.playing-game #mainContainer { margin-top: 0; }
 
 #agentName { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); font-family: 'Georgia', serif; font-size: 28px; font-weight: normal; margin: 0; z-index: 10; border-bottom: 2px solid #1a1a1a; padding-bottom: 5px; }
 
+#indicatorsInfo { position: absolute; top: 80px; left: 30px; width: 280px; box-sizing: border-box; padding: 24px 12px 10px; background: #f3f4f6; border-left: 3px solid #1e3a8a; border-radius: 4px; color: #555; font-size: 11px; line-height: 1.5; z-index: 10; animation: indicatorsFadeIn 0.4s ease-out; }
+.indicatorsInfoClose { position: absolute; top: 4px; right: 6px; padding: 2px 4px; border: 0; background: transparent; color: #555; font-size: 12px; line-height: 1; cursor: pointer; }
+@keyframes indicatorsFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 #storyText { position: absolute; bottom: 120px; left: 10%; right: 10%; background: #ffffff; border: 1px solid #d0d0d0; color: #1a1a1a; padding: 30px; border-radius: 8px; font-family: 'Georgia', serif; font-size: 18px; line-height: 1.7; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
 #choices { position: absolute; bottom: 20px; left: 10%; right: 10%; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; z-index: 10; }
@@ -618,4 +622,5 @@ body.playing-game #mainContainer { margin-top: 0; }
     .agent-buttons {
         width: 100%;
     }
+
 }

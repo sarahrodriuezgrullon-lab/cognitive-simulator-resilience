@@ -8,7 +8,9 @@ let wellbeing = 50;
 
 let unlockedEndings = [];
 let hasCalledFriend = false;
-let usedVices = false; 
+let usedVices = false;
+let vicesType = null; 
+let indicatorsInfoTimeout;
 
 
 // -------------------------
@@ -31,9 +33,96 @@ const stories = {
                 question: "What should Samantha do?",
                 choices: [
                     { label: "Call a friend", next: "callFriend" },
-                    { label: "Try to fix it", next: "tryToFix" }
+                    { label: "Lie to her mom and say she's staying at a friend's house", next: "lieToMom", effects: { stress: 82, socialSupport: 30, selfEfficacy: 25, fatigue: 48, wellbeing: 12 } }
                 ]
             },
+            
+            // --- RUTA DE LA MENTIRA (Expandida) ---
+            lieToMom: {
+                text: "Samantha told her mom she was staying with a friend. The words came out quickly, as if she was trying to make them true by saying them louder. For the rest of the afternoon, she kept checking her phone, waiting for a text that never came. The lie didn't solve anything. It just made her feel like she was walking on a cracked floor.",
+                effects: { stress: 76, socialSupport: 35, selfEfficacy: 30, fatigue: 52, wellbeing: 15 },
+                question: "The guilt is eating her alive. What should Samantha do?",
+                choices: [
+                    { label: "Message her friend to cover for her", next: "friendCoverLie", effects: { stress: 70, socialSupport: 55, selfEfficacy: 38, fatigue: 50, wellbeing: 22 } },
+                    { label: "Overthink the consequences", next: "overthinkLie", effects: { stress: 85, socialSupport: 35, selfEfficacy: 25, fatigue: 55, wellbeing: 10 } },
+                    { label: "Distract herself with her phone", next: "distractFromLie", effects: { stress: 72, socialSupport: 35, selfEfficacy: 28, fatigue: 50, wellbeing: 18 } }
+                ]
+            },
+            overthinkLie: {
+                text: "Samantha lay in bed, staring at the ceiling. 'What if mom finds out? What if she calls the friend's mom? What if she grounds me forever?' The thoughts spiraled faster and faster. The more she thought about it, the tighter her chest felt. The lie was a monster growing in the dark.",
+                effects: { stress: 88, socialSupport: 30, selfEfficacy: 20, fatigue: 58, wellbeing: 8 },
+                question: "She's panicking. What does she do?",
+                choices: [
+                    { label: "Confess the truth before it gets worse", next: "confessToMom", effects: { stress: 65, socialSupport: 60, selfEfficacy: 45, fatigue: 45, wellbeing: 25 } },
+                    { label: "Double down on the lie and ask her friend for help", next: "friendCoverLie", effects: { stress: 75, socialSupport: 55, selfEfficacy: 35, fatigue: 52, wellbeing: 15 } }
+                ]
+            },
+            distractFromLie: {
+                text: "Samantha opened TikTok and started scrolling. Funny videos, drama, cats. For a few minutes, she forgot about the lie. But every time she put the phone down, the anxiety hit her again like a wave. She was just numbing the pain, not fixing it.",
+                effects: { stress: 68, socialSupport: 35, selfEfficacy: 25, fatigue: 55, wellbeing: 20 },
+                question: "The distraction isn't working. What should she do?",
+                choices: [
+                    { label: "Keep distracting herself until it's too late", next: "tripMorning", effects: { stress: 60, socialSupport: 40, selfEfficacy: 30, fatigue: 50, wellbeing: 25 } },
+                    { label: "Realize she can't do this and confess", next: "confessToMom", effects: { stress: 65, socialSupport: 60, selfEfficacy: 45, fatigue: 45, wellbeing: 25 } }
+                ]
+            },
+            friendCoverLie: {
+                text: "Samantha sent a message to her friend, and the reply came almost immediately: 'I'll say you stayed with me.' The relief was short-lived. It felt good to have a way out, but the lie kept growing. Now two people were involved.",
+                effects: { stress: 68, socialSupport: 60, selfEfficacy: 42, fatigue: 48, wellbeing: 24 },
+                question: "What should Samantha do next?",
+                choices: [
+                    { label: "Keep pretending and wait for morning", next: "tripMorning", effects: { stress: 60, socialSupport: 65, selfEfficacy: 50, fatigue: 45, wellbeing: 35 } },
+                    { label: "Ask her friend to talk to her mom", next: "friendTalksToMom", effects: { stress: 62, socialSupport: 70, selfEfficacy: 35, fatigue: 45, wellbeing: 28 } },
+                    { label: "Cancel the plan and confess the truth", next: "confessToMom", effects: { stress: 65, socialSupport: 60, selfEfficacy: 45, fatigue: 45, wellbeing: 25 } }
+                ]
+            },
+            friendTalksToMom: {
+                text: "Samantha's friend called her mom and explained how upset Samantha had been. Her mom was disappointed that Samantha lied and grounded her, so she couldn't go on the trip. She still hugged Samantha and reminded her that she loved her. Samantha felt some relief, but missing the trip still hurt.",
+                effects: { stress: 55, socialSupport: 75, selfEfficacy: 50, fatigue: 40, wellbeing: 35 },
+                choices: [
+                    { label: "Spend the evening with Mom", next: "eveningWithMom" }
+                ]
+            },
+            confessToMom: {
+                text: "Samantha walked out of her room and told her mom the truth. Her mom was disappointed and grounded her, so she couldn't go on the trip, but she listened and comforted Samantha. Telling the truth eased some of the guilt, though Samantha was still sad about missing the trip.",
+                effects: { stress: 55, socialSupport: 75, selfEfficacy: 50, fatigue: 40, wellbeing: 35 },
+                choices: [
+                    { label: "Spend the evening with Mom", next: "eveningWithMom" }
+                ]
+            },
+            eveningWithMom: {
+                text: "Samantha and her mom ordered pizza and watched a movie together. Losing the trip still hurt, but Samantha realized that carrying the guilt had hurt more.",
+                choices: []
+            },
+            tripMorning: {
+                text: "The next morning, Samantha got dressed for the trip and headed for the door. Her mom stopped her before she could leave and told her she knew about the lie. The bus would leave without Samantha.",
+                effects: { stress: 78, socialSupport: 40, selfEfficacy: 28, fatigue: 55, wellbeing: 10 },
+                question: "What happens now?",
+                choices: [
+                    { label: "Listen as her mom explains the punishment", next: "caughtByMom" }
+                ]
+            },
+            caughtByMom: {
+                text: "Her mom grounded her for lying, so Samantha had to stay home. She was angry and disappointed about missing the trip, but her mom stayed with her and made it clear that they could talk when Samantha was ready.",
+                effects: { stress: 75, socialSupport: 55, selfEfficacy: 30, fatigue: 55, wellbeing: 12 },
+                question: "How should Samantha respond?",
+                choices: [
+                    { label: "Admit why she lied and apologize", next: "lateConfession", effects: { stress: 58, socialSupport: 70, selfEfficacy: 45, fatigue: 45, wellbeing: 30 } },
+                    { label: "Go to her room and sit with the guilt", next: "stayHomeWithGuilt", effects: { stress: 82, socialSupport: 35, selfEfficacy: 22, fatigue: 60, wellbeing: 8 } }
+                ]
+            },
+            lateConfession: {
+                text: "Samantha admitted she had lied because she was desperate to go on the trip. Her mom accepted her apology but kept her grounded. The trip was gone, and Samantha was still sad, but telling the truth eased some of the guilt. Her mom sat beside her while she cried.",
+                effects: { stress: 58, socialSupport: 70, selfEfficacy: 45, fatigue: 45, wellbeing: 30 },
+                choices: []
+            },
+            stayHomeWithGuilt: {
+                text: "Samantha stayed home while the bus left without her. She felt guilty about lying and upset about missing the trip. Her mom checked on her later, but the disappointment and guilt were still there.",
+                effects: { stress: 82, socialSupport: 40, selfEfficacy: 22, fatigue: 60, wellbeing: 8 },
+                choices: []
+            },
+
+            // --- RUTA DE LLAMAR A UNA AMIGA ---
             callFriend: {
                 text: "Samantha didn't want to be alone with her thoughts. She grabbed her phone.",
                 question: "Who should Samantha call?",
@@ -135,56 +224,7 @@ const stories = {
             },
             deepCleaning: { text: "Samantha deep cleaned her room. She was exhausted but her room felt new.", effects: { stress: 55, socialSupport: 45, selfEfficacy: 55, fatigue: 70, wellbeing: 35 }, choices: [] },
             rearrangeFurniture: { text: "Samantha rearranged the furniture. The room felt different.", effects: { stress: 55, socialSupport: 45, selfEfficacy: 50, fatigue: 65, wellbeing: 35 }, choices: [] },
-            organizeBookshelf: { text: "Samantha organized her bookshelf. It was calming.", effects: { stress: 55, socialSupport: 45, selfEfficacy: 50, fatigue: 55, wellbeing: 40 }, choices: [] },
-            tryToFix: {
-                text: "Samantha didn't want to just sit with it. She wanted to do something.",
-                effects: { stress: 65, socialSupport: 50, selfEfficacy: 45, fatigue: 45, wellbeing: 25 },
-                question: "What should Samantha do?",
-                choices: [
-                    { label: "Talk to her mom again", next: "fixWithMom" },
-                    { label: "Talk to another adult she trusts", next: "fixWithAdult" },
-                    { label: "Make her own plan", next: "makeOwnPlan" }
-                ]
-            },
-            fixWithMom: {
-                text: "Samantha went back to her mom. Not to argue. To understand.",
-                effects: { stress: 55, socialSupport: 65, selfEfficacy: 50, fatigue: 40, wellbeing: 35 },
-                question: "What should Samantha say?",
-                choices: [
-                    { label: "Ask why she can't go", next: "momAskWhy" },
-                    { label: "Try to negotiate", next: "momNegotiate" },
-                    { label: "Accept it, even if it hurts", next: "momAccept" }
-                ]
-            },
-            momAskWhy: { text: "Samantha asked why. She understood a little better.", effects: { stress: 55, socialSupport: 65, selfEfficacy: 50, fatigue: 40, wellbeing: 40 }, choices: [] },
-            momNegotiate: { text: "Samantha tried to negotiate. Her mom said no, but gently.", effects: { stress: 60, socialSupport: 60, selfEfficacy: 55, fatigue: 40, wellbeing: 35 }, choices: [] },
-            momAccept: { text: "Samantha stopped fighting. Sometimes accepting is not giving up.", effects: { stress: 50, socialSupport: 65, selfEfficacy: 45, fatigue: 40, wellbeing: 45 }, choices: [] },
-            fixWithAdult: {
-                text: "Samantha thought about who else she could talk to.",
-                effects: { stress: 60, socialSupport: 60, selfEfficacy: 45, fatigue: 45, wellbeing: 30 },
-                question: "What should Samantha ask?",
-                choices: [
-                    { label: "Ask them to talk to her mom", next: "adultIntercede" },
-                    { label: "Just tell them how she feels", next: "adultVent" },
-                    { label: "Ask for their perspective", next: "adultPerspective" }
-                ]
-            },
-            adultIntercede: { text: "Someone was willing to try for her.", effects: { stress: 55, socialSupport: 70, selfEfficacy: 50, fatigue: 45, wellbeing: 40 }, choices: [] },
-            adultVent: { text: "They just listened. Sometimes that's what you need.", effects: { stress: 55, socialSupport: 70, selfEfficacy: 45, fatigue: 45, wellbeing: 45 }, choices: [] },
-            adultPerspective: { text: "It didn't fix anything. But it made her feel less stuck.", effects: { stress: 50, socialSupport: 65, selfEfficacy: 55, fatigue: 45, wellbeing: 45 }, choices: [] },
-            makeOwnPlan: {
-                text: "Samantha couldn't change the trip. But she could change what she did that day.",
-                effects: { stress: 55, socialSupport: 50, selfEfficacy: 55, fatigue: 45, wellbeing: 40 },
-                question: "What should Samantha plan?",
-                choices: [
-                    { label: "Plan something fun for that day", next: "planFunDay" },
-                    { label: "Plan a trip with her friends later", next: "planFriendsTrip" },
-                    { label: "Write about what she's feeling", next: "writeAboutIt" }
-                ]
-            },
-            planFunDay: { text: "She wrote down three things she wanted to do. It made the day feel less empty.", effects: { stress: 45, socialSupport: 55, selfEfficacy: 65, fatigue: 45, wellbeing: 60 }, choices: [] },
-            planFriendsTrip: { text: "It was with people she chose.", effects: { stress: 45, socialSupport: 70, selfEfficacy: 60, fatigue: 45, wellbeing: 60 }, choices: [] },
-            writeAboutIt: { text: "She felt a little lighter.", effects: { stress: 50, socialSupport: 50, selfEfficacy: 55, fatigue: 45, wellbeing: 50 }, choices: [] }
+            organizeBookshelf: { text: "Samantha organized her bookshelf. It was calming.", effects: { stress: 55, socialSupport: 45, selfEfficacy: 50, fatigue: 55, wellbeing: 40 }, choices: [] }
         }
     },
 
@@ -200,8 +240,27 @@ const stories = {
                 choices: [
                     { label: "Call his best friend", next: "callFriend", effects: { stress: 55, socialSupport: 70, selfEfficacy: 55, fatigue: 50, wellbeing: 30 } },
                     { label: "Start job hunting", next: "jobHunting", effects: { stress: 55, socialSupport: 50, selfEfficacy: 65, fatigue: 50, wellbeing: 35 } },
-                    { label: "Tell his family", next: "tellFamily", effects: { stress: 60, socialSupport: 60, selfEfficacy: 55, fatigue: 50, wellbeing: 35 } },
-                    { label: "Sit on the couch and do nothing", next: "couch", effects: { stress: 70, socialSupport: 50, selfEfficacy: 55, fatigue: 55, wellbeing: 25 } }
+                    { label: "Sit on the couch and do nothing", next: "couch", effects: { stress: 70, socialSupport: 50, selfEfficacy: 55, fatigue: 55, wellbeing: 25 } },
+                    { label: "Text his ex-girlfriend at 2 AM", next: "textExGirlfriend", effects: { stress: 60, socialSupport: 40, selfEfficacy: 35, fatigue: 55, wellbeing: 20 } }
+                ]
+            },
+            textExGirlfriend: {
+                text: "At 2:13 AM, Fabián stared at his ex's name on his phone. The message draft kept changing. He wanted comfort, and he wanted to stop feeling so alone. He pressed send anyway.",
+                effects: { stress: 62, socialSupport: 35, selfEfficacy: 30, fatigue: 58, wellbeing: 18 },
+                question: "What should Fabián do now?",
+                choices: [
+                    { label: "Delete the message and call a friend", next: "callFriend", effects: { stress: 50, socialSupport: 75, selfEfficacy: 60, fatigue: 52, wellbeing: 35 } },
+                    { label: "Wait for a reply and sit with the panic", next: "rejectionLoop", effects: { stress: 75, socialSupport: 45, selfEfficacy: 30, fatigue: 60, wellbeing: 15 } }
+                ]
+            },
+            rejectionLoop: {
+                text: "The reply came an hour later. It was short, cold, and final: 'Please don't text me again.' Fabián stared at the screen. The silence in the apartment was deafening. He felt a pit in his stomach, and suddenly, the urge to make the pain stop was overwhelming. The bathroom cabinet and the fridge were just a few steps away.",
+                effects: { stress: 85, socialSupport: 20, selfEfficacy: 15, fatigue: 65, wellbeing: 5 },
+                question: "How does Fabián cope with the rejection?",
+                choices: [
+                    { label: "Go to the kitchen and grab a beer", next: "grabBeer", effects: { stress: 40, fatigue: 60, selfEfficacy: 25, wellbeing: 15 } },
+                    { label: "Go to the bathroom and take sleeping pills", next: "sleepingPills", effects: { stress: 40, fatigue: 70, selfEfficacy: 20, wellbeing: 10 } },
+                    { label: "Go to the balcony and smoke a cigarette", next: "smokeCigarette", effects: { stress: 35, fatigue: 50, selfEfficacy: 20, wellbeing: 10 } }
                 ]
             },
             
@@ -210,18 +269,8 @@ const stories = {
                 text: "His friend picked up on the second ring. Fabián didn't say anything at first. Then he said, 'I got fired.' His friend didn't try to fix it. He just listened.",
                 question: "What should Fabián do next?",
                 choices: [
-                    { label: "Tell his family", next: "tellFamilyAfterCall", effects: { stress: 45, socialSupport: 75, selfEfficacy: 55, fatigue: 50, wellbeing: 40 } },
                     { label: "Make a plan with his friend", next: "planWithFriend", effects: { stress: 50, socialSupport: 65, selfEfficacy: 65, fatigue: 50, wellbeing: 35 } },
                     { label: "Just vent and not plan", next: "justVent", effects: { stress: 45, socialSupport: 65, selfEfficacy: 50, fatigue: 55, wellbeing: 30 } }
-                ]
-            },
-            tellFamilyAfterCall: {
-                text: "Fabián called his mom after talking to his friend. He told her what happened. She listened. She said, 'You're not alone in this.' It didn't fix anything. But it helped.",
-                question: "What should Fabián do next?",
-                choices: [
-                    { label: "Thank his friend and hang up", next: "chooseClosingScene", effects: { stress: 40, socialSupport: 80, selfEfficacy: 55, fatigue: 50, wellbeing: 45 } },
-                    { label: "Ask his friend for advice", next: "chooseClosingScene", effects: { stress: 40, socialSupport: 75, selfEfficacy: 65, fatigue: 50, wellbeing: 40 } },
-                    { label: "Invite his friend to hang out", next: "chooseClosingScene", effects: { stress: 35, socialSupport: 85, selfEfficacy: 55, fatigue: 45, wellbeing: 50 } }
                 ]
             },
             planWithFriend: {
@@ -281,44 +330,6 @@ const stories = {
                 ]
             },
 
-            // ROUTE 3: TELL FAMILY
-            tellFamily: {
-                text: "Fabián called his mom. He told her what happened. She didn't say much. But she said, 'Come home this weekend. We'll figure it out.' It wasn't a solution. But it was something.",
-                question: "What should Fabián do next?",
-                choices: [
-                    { label: "Go home for the weekend", next: "goHome", effects: { stress: 50, socialSupport: 75, selfEfficacy: 55, fatigue: 45, wellbeing: 45 } },
-                    { label: "Start job hunting", next: "jobHuntingAfterFamily", effects: { stress: 55, socialSupport: 60, selfEfficacy: 65, fatigue: 50, wellbeing: 35 } },
-                    { label: "Take the day to rest and think", next: "restAndThink", effects: { stress: 50, socialSupport: 60, selfEfficacy: 55, fatigue: 35, wellbeing: 40 } }
-                ]
-            },
-            goHome: {
-                text: "Fabián went home for the weekend. His mom made his favorite food. They didn't talk about the job. They just were together. It was enough.",
-                question: "What should Fabián do next?",
-                choices: [
-                    { label: "Accept and enjoy the weekend", next: "chooseClosingScene", effects: { stress: 40, socialSupport: 90, selfEfficacy: 65, fatigue: 45, wellbeing: 60 } },
-                    { label: "Tell her he'll think about it", next: "chooseClosingScene", effects: { stress: 45, socialSupport: 70, selfEfficacy: 60, fatigue: 45, wellbeing: 45 } },
-                    { label: "Tell her not to worry", next: "chooseClosingScene", effects: { stress: 55, socialSupport: 60, selfEfficacy: 50, fatigue: 45, wellbeing: 35 } }
-                ]
-            },
-            jobHuntingAfterFamily: {
-                text: "Fabián went back to his apartment and started applying. He had support now. And he had a plan.",
-                question: "What should Fabián do next?",
-                choices: [
-                    { label: "Apply to 5 more jobs", next: "chooseClosingScene", effects: { stress: 50, socialSupport: 60, selfEfficacy: 70, fatigue: 50, wellbeing: 40 } },
-                    { label: "Update his resume", next: "chooseClosingScene", effects: { stress: 55, socialSupport: 60, selfEfficacy: 65, fatigue: 50, wellbeing: 35 } },
-                    { label: "Stop and rest for the day", next: "chooseClosingScene", effects: { stress: 50, socialSupport: 60, selfEfficacy: 60, fatigue: 40, wellbeing: 35 } }
-                ]
-            },
-            restAndThink: {
-                text: "Fabián didn't do anything. He didn't plan. He didn't call anyone. He just rested. It felt strange. But it also felt necessary.",
-                question: "What should Fabián do next?",
-                choices: [
-                    { label: "Sleep for a while", next: "chooseClosingScene", effects: { stress: 45, socialSupport: 60, selfEfficacy: 55, fatigue: 30, wellbeing: 40 } },
-                    { label: "Watch a movie", next: "chooseClosingScene", effects: { stress: 45, socialSupport: 60, selfEfficacy: 55, fatigue: 35, wellbeing: 45 } },
-                    { label: "Go for a short walk", next: "chooseClosingScene", effects: { stress: 40, socialSupport: 60, selfEfficacy: 60, fatigue: 35, wellbeing: 45 } }
-                ]
-            },
-
             // ROUTE 4: COUCH
             couch: {
                 text: "Fabián didn't move. He sat on the couch and stared at the wall. The hours passed. He didn't eat. He didn't sleep. He just stayed there, waiting for something to change. Nothing did.",
@@ -375,7 +386,8 @@ const stories = {
                 text: "Fabián didn't want to feel anything. He took three sleeping pills instead of two. He just wanted to sleep. To disappear for a while.", 
                 effects: { stress: 40, fatigue: 70, selfEfficacy: 20, wellbeing: 10 }, 
                 choices: [],
-                triggerVices: true 
+                triggerVices: true,
+                viceType: "pills"
             },
             
             kitchenChoices: {
@@ -395,7 +407,8 @@ const stories = {
                 text: "Fabián opened a beer. Then another. He just wanted to turn his brain off. It worked. For a little while.", 
                 effects: { stress: 40, fatigue: 60, selfEfficacy: 25, wellbeing: 15 }, 
                 choices: [],
-                triggerVices: true
+                triggerVices: true,
+                viceType: "beer"
             },
             
             balconyChoices: {
@@ -413,7 +426,8 @@ const stories = {
                 text: "Fabián lit a cigarette. He didn't even smoke that much. But right now, he needed something to do with his hands. Something to make the anxiety stop.", 
                 effects: { stress: 35, fatigue: 50, selfEfficacy: 20, wellbeing: 10 }, 
                 choices: [],
-                triggerVices: true
+                triggerVices: true,
+                viceType: "cigarette"
             },
 
             // DAY 2 SCENES
@@ -484,7 +498,7 @@ const stories = {
                 choices: []
             },
             day2BadStart: {
-                text: "Fabián woke up with a pounding headache. His mouth was dry. The room was spinning. He felt terrible.",
+                text: "Fabián woke up feeling terrible. His head was pounding, his mouth was dry, and the room was spinning. The consequences of last night were hitting him hard.",
                 question: "What should Fabián do?",
                 choices: [
                     { label: "Go back to sleep", next: "sleepAfternoon", effects: { stress: 55, fatigue: 60, selfEfficacy: 15, wellbeing: 10 } },
@@ -514,6 +528,7 @@ function startStory(agentName) {
 
     hasCalledFriend = false;
     usedVices = false;
+    vicesType = null;
     updateStatus();
     showScene("intro");
 }
@@ -528,13 +543,14 @@ function showScene(sceneId) {
     }
 
     // Track if Fabián called his friend
-    if (sceneId === "callFriend" || sceneId === "callFriendAfterCouch" || sceneId === "tellFamilyAfterCall" || sceneId === "planWithFriend" || sceneId === "justVent") {
+    if (sceneId === "callFriend" || sceneId === "callFriendAfterCouch" || sceneId === "planWithFriend" || sceneId === "justVent") {
         hasCalledFriend = true;
     }
 
     // Track if Fabián used vices
     if (scene.triggerVices) {
         usedVices = true;
+        if (scene.viceType) vicesType = scene.viceType;
     }
 
     if (scene.effects) {
@@ -658,6 +674,11 @@ function selectAgent(agentName) {
 
     enterGameMode();
     startStory(agentName);
+
+    clearTimeout(indicatorsInfoTimeout);
+    indicatorsInfoTimeout = setTimeout(function () {
+        document.getElementById("indicatorsInfo").style.display = "none";
+    }, 8000);
 }
 
 
@@ -702,6 +723,19 @@ function endDayOne() {
         updateStatus();
         
         if (usedVices) {
+            let symptomText = "Fabián woke up feeling terrible. His head was pounding and his mouth was dry.";
+            if (vicesType === "beer") {
+                symptomText = "Fabián woke up with a terrible hangover. His head was pounding, his mouth was dry, and the room was spinning. The empty beer bottles on the counter were a harsh reminder of last night.";
+            } else if (vicesType === "pills") {
+                symptomText = "Fabián woke up feeling groggy and disconnected. The sleeping pills had knocked him out, but his head felt heavy and his body ached.";
+            } else if (vicesType === "cigarette") {
+                symptomText = "Fabián woke up with a splitting headache. His throat was dry and his chest felt tight from the smoke.";
+            }
+            
+            const scene = currentStory.scenes["day2BadStart"];
+            if (scene) {
+                scene.text = symptomText;
+            }
             showScene("day2BadStart");
         } else {
             showScene("day2Start");
@@ -913,6 +947,9 @@ function endStory(endingId) {
 }
 
 function resetGame() {
+    clearTimeout(indicatorsInfoTimeout);
+    indicatorsInfoTimeout = null;
+
     stress = 35;
     socialSupport = 65;
     selfEfficacy = 50;
@@ -921,10 +958,12 @@ function resetGame() {
 
     hasCalledFriend = false;
     usedVices = false;
+    vicesType = null;
 
     document.getElementById("endingDisplay").style.display = "none";
     document.getElementById("startScreen").style.display = "grid";
     document.getElementById("gameScreen").style.display = "none";
+    document.getElementById("indicatorsInfo").style.display = "block";
 
     exitGameMode();
     renderEndingsTracker();
@@ -966,25 +1005,19 @@ renderEndingsTracker();
 // -------------------------
 
 function showSection(sectionName) {
-    // Hide all sections
     const sections = document.querySelectorAll('.page-section');
     sections.forEach(s => s.classList.remove('active'));
 
-    // Remove 'active' class from nav buttons
     const navButtons = document.querySelectorAll('.nav-links button');
     navButtons.forEach(b => b.classList.remove('active'));
 
-    // Show the selected section
     document.getElementById(sectionName + 'Section').classList.add('active');
     
-    // Mark the button as active
     const activeBtn = document.getElementById('btn-' + sectionName);
     if (activeBtn) activeBtn.classList.add('active');
 
-    // Ensure we are not in game mode (restore navbar if it was hidden)
     document.body.classList.remove('playing-game');
     
-    // If we leave the simulator, reset the game so it doesn't stay half-played
     if (sectionName !== 'simulator') {
         resetGame(); 
     }
@@ -994,12 +1027,10 @@ function showSection(sectionName) {
 // GAME MODE CONTROLS
 // -------------------------
 
-// Call this function when the player selects a character
 function enterGameMode() {
     document.body.classList.add('playing-game');
 }
 
-// Call this function when the player returns to the menu
 function exitGameMode() {
     document.body.classList.remove('playing-game');
 }
